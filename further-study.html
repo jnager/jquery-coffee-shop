@@ -16,7 +16,7 @@
         <h1>Coffee Shop</h1>
         <br>
 
-        <img class = "coffee-button" id="brew" src="LOLWUT" alt="make this image work" height="300" width="200">
+        <img class = "coffee-button" id="brew" src="static/coffee_beans.jpg" alt="make this image work" height="300" width="200">
 
         <h3 id="message">Click The Image To Order Coffee</h3>
 
@@ -56,9 +56,19 @@
 
         $("#revenue").html("Today's revenues: " + revenue());
 
-        $('#brew').attr('src', 'static/coffee_machine.jpg');
-        setTimeout(function() { $('#brew').attr('src', 'static/coffee_mug.jpg'); }, 500);
-        setTimeout(function() { $('#brew').attr('src', 'static/coffee_beans.jpg'); }, 1500);
+        $('#brew').fadeOut(1000, function () 
+            { $('#brew').attr('src', 'static/coffee_machine.jpg').fadeIn(1000, function () 
+                { $('#brew').fadeOut(1000, function ()
+                    { $('#brew').attr('src', 'static/coffee_mug.jpg').fadeIn(1000, function ()
+                        { $('#brew').fadeOut(1000, function () 
+                            { $('#brew').attr('src', 'static/coffee_beans.jpg').fadeIn(1000);
+                            })
+                        })
+                    })
+                })
+            });
+        // setTimeout(function() { $('#brew').attr('src', 'static/coffee_mug.jpg'); }, 3000);
+        // setTimeout(function() { $('#brew').attr('src', 'static/coffee_beans.jpg'); }, 4000);
     }
 
 
@@ -69,7 +79,10 @@
     // espresso.addEventListener('click', function () { return makeCoffee("espresso"); });
     // latte.addEventListener('click', function () { return makeCoffee("latte"); });
     // hotChocolate.addEventListener('click', function () { return makeCoffee("hot chocolate"); });
-    $('#brew').attr('src', 'static/coffee_beans.jpg');
+
+    // $('#brew').fadeIn(1000).attr('src', 'static/coffee_beans.jpg');
+ 
+
 
     $('.coffee-button').click(function (evt) { return makeCoffee(evt.target.id); });
 
